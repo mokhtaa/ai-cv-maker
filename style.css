@@ -1,0 +1,280 @@
+/* --- إعدادات عامة وخطوط --- */
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* --- تنسيق العنوان الرئيسي --- */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    color: #0056b3;
+}
+
+/* --- الحاوية الرئيسية التي تقسم الصفحة --- */
+.container {
+    display: flex;
+    gap: 30px;
+    /* مسافة بين قسم الإدخال وقسم الإخراج */
+    max-width: 1400px;
+    margin: auto;
+    align-items: flex-start;
+}
+
+/* --- تنسيق قسم الإدخال وقسم الإخراج --- */
+.input-section,
+.output-section {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    color: #0056b3;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+/* --- تنسيق صندوق النص --- */
+textarea#userInput {
+    width: 95%;
+    height: 450px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    font-size: 16px;
+    font-family: 'Cairo', sans-serif;
+    resize: vertical;
+    margin-bottom: 20px;
+}
+
+/* --- تنسيق مفتاح اختيار اللغة --- */
+.language-switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.language-switch label {
+    font-size: 16px;
+    color: #555;
+    cursor: pointer;
+}
+
+.language-switch input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+
+/* --- تنسيق الزر --- */
+button#generateBtn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button#generateBtn:hover {
+    background-color: #0056b3;
+}
+
+
+/* --- تنسيق قسم عرض النتيجة --- */
+.cv-preview {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fff;
+    min-height: 500px;
+    text-align: right;
+}
+
+.placeholder-text {
+    color: #888;
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* --- تنسيقات إضافية لعرض السيرة الذاتية النهائية --- */
+.cv-header {
+    text-align: center;
+    border-bottom: 2px solid #0056b3;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.cv-header h2 {
+    margin: 0;
+    color: #333;
+}
+
+.cv-header p {
+    margin: 5px 0 0;
+    color: #555;
+}
+
+.cv-section {
+    margin-bottom: 20px;
+}
+
+.cv-section h3 {
+    color: #0056b3;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.cv-item {
+    margin-bottom: 15px;
+}
+
+.cv-item h4 {
+    margin: 0 0 5px 0;
+}
+
+.cv-item p,
+.cv-item em {
+    margin: 0 0 5px 0;
+    color: #666;
+}
+
+.error-text {
+    color: #D8000C;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* --- شكل أيقونة التحميل --- */
+.loading-spinner {
+    margin: 20px auto;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #007bff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- تنسيق أزرار اختيار القوالب --- */
+.template-selector {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+}
+
+.template-selector h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.template-btn,
+.download-btn {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: background-color 0.3s;
+}
+
+.template-btn:hover {
+    background-color: #5a6268;
+}
+
+.download-btn {
+    background-color: #28a745;
+}
+
+.download-btn:hover {
+    background-color: #218838;
+}
+
+/* --- تعريف أنماط القوالب --- */
+/* القالب الأول: كلاسيكي (عمود واحد) */
+.cv-preview.classic .cv-section h3 {
+    border-right: 3px solid #0056b3;
+    padding-right: 10px;
+    border-bottom: none;
+}
+
+/* القالب الثاني: حديث (عمودين) */
+.cv-preview.modern {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+}
+
+.cv-preview.modern[style*="direction: ltr"] {
+    grid-template-columns: 1fr 2fr;
+}
+
+/* English layout */
+.cv-preview.modern[style*="direction: rtl"] {
+    grid-template-columns: 2fr 1fr;
+}
+
+/* Arabic layout */
+
+.cv-preview.modern .cv-header h2 {
+    font-size: 1.5em;
+}
+
+.cv-preview.modern .cv-sidebar {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.cv-preview.modern[style*="direction: rtl"] .cv-sidebar {
+    grid-column: 2 / 3;
+}
+
+.cv-preview.modern[style*="direction: ltr"] .cv-sidebar {
+    grid-column: 1 / 2;
+}
+
+.cv-preview.modern .cv-main {
+    grid-column: auto;
+}
+
+.cv-preview.modern .cv-sidebar h3 {
+    font-size: 1.1em;
+    color: #343a40;
+}

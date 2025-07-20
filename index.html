@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منشئ السيرة الذاتية بالذكاء الاصطناعي</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- مكتبات تحميل PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+
+<body>
+
+    <header>
+        <h1>منشئ السيرة الذاتية الذكي</h1>
+        <p>اكتب أو الصق بياناتك في الصندوق، وسيقوم الذكاء الاصطناعي بتحويلها إلى سيرة ذاتية احترافية.</p>
+    </header>
+
+    <main class="container">
+        <!-- قسم الإدخال -->
+        <section class="input-section">
+            <h2>أدخل بياناتك هنا</h2>
+            <textarea id="userInput" placeholder="مثال:
+الاسم: أحمد محمد
+البريد الإلكتروني: ahmad@example.com
+الهاتف: 966501234567
+
+الخبرة العملية:
+- مدير تسويق في شركة ABC (2020 - حتى الآن)
+  - مسؤول عن الحملات التسويقية الرقمية.
+- أخصائي تسويق في شركة XYZ (2018 - 2020)
+  - ساهمت في زيادة المبيعات بنسبة 15%.
+
+التعليم:
+- بكالوريوس في إدارة الأعمال من جامعة الملك سعود (2018).
+
+المهارات:
+- التسويق الرقمي، إدارة المشاريع، اللغة الإنجليزية.
+            "></textarea>
+
+            <!-- مفتاح اختيار اللغة -->
+            <div class="language-switch">
+                <input type="checkbox" id="translateSwitch" name="translate">
+                <label for="translateSwitch">ترجمة إلى اللغة الإنجليزية</label>
+            </div>
+
+            <button id="generateBtn">أنشئ سيرتي الذاتية</button>
+        </section>
+
+        <!-- قسم عرض السيرة الذاتية -->
+        <section class="output-section">
+            <!-- قسم اختيار القوالب -->
+            <div class="template-selector">
+                <h3>اختر القالب:</h3>
+                <button class="template-btn" data-template="classic">كلاسيكي</button>
+                <button class="template-btn" data-template="modern">حديث</button>
+                <button id="downloadBtn" class="download-btn">تحميل كـ PDF</button>
+            </div>
+
+            <h2>النتيجة</h2>
+            <div id="cvResult" class="cv-preview">
+                <p class="placeholder-text">ستظهر معاينة السيرة الذاتية هنا بعد الضغط على زر الإنشاء...</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
