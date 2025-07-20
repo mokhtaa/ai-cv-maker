@@ -22,17 +22,32 @@ document.addEventListener('DOMContentLoaded', () => {
         generateBtn.textContent = 'جاري الإنشاء...';
         cvResult.innerHTML = '<div class="loading-spinner"></div><p class="placeholder-text">يتم الآن تحليل بياناتك بواسطة الذكاء الاصطناعي...</p>';
 
+        // --- !!! التعديل المهم هنا !!! ---
+        // نستخدم خدمة وكيل لتجاوز مشكلة المحتوى المختلط (http من داخل https)
+        const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+        const serverUrl = 'http://mokhtar.pythonanywhere.com/generate-cv'; // تأكد من أن هذا هو اسم المستخدم الصحيح
+        const fullUrl = proxyUrl + serverUrl;
+
         try {
-            const response = await fetch('https://mokhtar.pythonanywhere.com/', {
+            const response = await fetch(fullUrl, { // نستخدم الرابط الكامل مع الوكيل
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest' // بعض الوكلاء يتطلبون هذا الرأس
+                },
                 body: JSON.stringify({
                     userInput: userInputText,
                     translate: shouldTranslate
                 })
             });
+
+            if (!response.ok) {
+                // نحاول قراءة الخطأ من الخادم إذا كان متوفراً
+                const errorData = await response.json().catch(() => null);
+                throw new Error(errorData?.error || `حدث خطأ في الشبكة: ${response.statusText}`);
+            }
+
             const data = await response.json();
-            if (!response.ok) throw new Error(data.error || 'حدث خطأ غير معروف.');
 
             const cvData = JSON.parse(data.cv_data);
             cvResult.dataset.cvData = JSON.stringify(cvData);
@@ -78,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const pdf = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'a4' });
 
             const pdfWidth = pdf.internal.pageSize.getWidth();
-            const pdfHeight = pdf.internal.pageSize.getHeight();
             const canvasWidth = canvas.width;
             const canvasHeight = canvas.height;
             const ratio = pdfWidth / canvasWidth;
