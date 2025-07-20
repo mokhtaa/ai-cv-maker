@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cvResult.innerHTML = '<div class="loading-spinner"></div><p class="placeholder-text">يتم الآن تحليل بياناتك بواسطة الذكاء الاصطناعي...</p>';
 
         try {
-            const response = await fetch('http://mokhtar.pythonanywhere.com/', {
+            const response = await fetch('https://mokhtar.pythonanywhere.com/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
